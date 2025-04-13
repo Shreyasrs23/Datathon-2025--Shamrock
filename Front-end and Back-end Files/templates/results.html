@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #1e293b, #0f172a, #1e293b, #0b1120);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      color: #3b82f6;
+    }
+
+    .result-line {
+      font-size: 1.75rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 14px 28px;
+      border-radius: 12px;
+      margin: 12px 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    a {
+      display: block;
+      margin-top: 40px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    footer strong {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="main">
+      <h1>🎉 Prediction Result!</h1>
+  
+      <div class="result-line">{{ result }}</div>
+      <div class="result-line">{{ category }}</div>
+  
+      <a href="/">← Try another image</a>
+    </div>
+  
+    <footer>
+      <p>©️ 2025 UTA Datathon</p>
+      <p>Designed & developed by <strong>Anuva Negi, Shreyas R S & Smrithi Chembath</strong></p>
+    </footer>
+  
+  </body>
+</html>

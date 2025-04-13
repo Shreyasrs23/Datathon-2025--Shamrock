@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Image Verifier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #1e293b, #0f172a, #1e293b, #0b1120);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+     background: rgba(255, 255, 255, 0.05);
+     backdrop-filter: blur(12px);
+     border-radius: 20px;
+     padding: 40px;
+     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+     text-align: center;
+     width: 95%;
+     max-width: 960px;
+     margin-top: 40px;
+}
+
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      color: #cbd5e1;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      margin: 20px 0;
+      border: 2px dashed #94a3b8;
+      background: transparent;
+      color: #cbd5e1;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button {
+      background: #3b82f6;
+      color: white;
+      font-weight: bold;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+      transition: background 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .sponsor-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .sponsor-container p {
+      margin-bottom: 16px;
+      font-weight: bold;
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
+
+    .sponsor-logos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .sponsor-logos img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .sponsor-logos img:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      text-align: center;
+      margin: 50px 0 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    footer p {
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    footer a {
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <img src="https://i.postimg.cc/wjNykPH3/temp-Imageq-VJn-ND.avif" alt="Datathon Logo" class="logo" />
+    </div>
+    <h1>🔍 Image Verifier</h1>
+    <p class="description">Upload any image to detect if it's real or fake,<br>from the three present categories ( Animal, Human, or Vehicle )</p>
+
+    <form id="uploadForm" method="POST" action="/predict" enctype="multipart/form-data">
+      <input type="file" name="image" id="imageInput" required />
+      <p style="color: #facc15; font-size: 0.9rem; margin-top: 5px;">
+        📸 Please upload a clear image for better prediction results.
+      </p>
+      <br>
+      <button type="submit">Predict</button>
+    </form>
+    
+
+    <div class="footer">⚡ Powered by Shamrock | Part of Datathon 2025</div>
+
+    <div class="sponsor-container">
+      <p>Sponsored by:</p>
+      <div class="sponsor-logos">
+        <img src="https://i.postimg.cc/Tw5gZwvq/temp-Imagew-K5-Jy-D.avif" alt="MLH">
+        <img src="https://i.postimg.cc/s2Xp4mnL/temp-Image-Qsgwp-Z.avif" alt="UTA">
+        <img src="https://i.postimg.cc/903ZVhW3/temp-Image-GC9g-Og.avif" alt="Stickers">
+        <img src="https://i.postimg.cc/gJttKrqV/temp-Image-Oc-Pxek.avif" alt="Student Gov">
+        <img src="https://i.postimg.cc/SxQ8mVpK/temp-Image-Sx-Sj-QH.avif" alt="SCAI">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 UTA Datathon</p>
+    <p>Designed & developed by <strong>Anuva Negi , Shreyas R S & Smrithi Chembath </strong></p>
+  </footer>
+
+  <script>
+    const input = document.getElementById('imageInput');
+    const preview = document.getElementById('preview');
+    const form = document.getElementById('uploadForm');
+
+    input.onchange = (e) => {
+      const [file] = e.target.files;
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      }
+    };
+
+
+  </script>
+</body>
+</html>
